@@ -22,7 +22,7 @@ class Parser:
                 print(data)
             elif file_type == "json":
                 data = json.loads(file_content)
-                print(json.dumps(data))
+                print(json.dumps(data, indent=4, default=str))
             elif file_type == "csv":
                 reader = csv.reader(file_content.splitlines())
                 for row in reader:
