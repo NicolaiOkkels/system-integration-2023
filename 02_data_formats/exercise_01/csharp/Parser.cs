@@ -50,8 +50,17 @@ namespace FileParser
                         break;
                     case ".yaml":
                         var deserializer = new DeserializerBuilder().Build();
-                        var result = deserializer.Deserialize(reader);
-                        Console.WriteLine(result);
+                        var result = deserializer.Deserialize<Person>(fileContent);
+                        var h = result.Hobbies;
+
+                        if (result.Hobbies != null)
+                        {
+                            Console.WriteLine($"{result.Name}, {result.Age} and have the hobbies: {String.Join(", ", result.Hobbies)}");
+                        }
+                        else
+                        {
+                            Console.WriteLine($"{result.Name}, {result.Age} and have no hobbies.");
+                        }
                         break;
                     case ".json":
                         dynamic? parsedJson = JsonConvert.DeserializeObject(fileContent);
@@ -74,16 +83,19 @@ namespace FileParser
                         Console.WriteLine(person.ToString());
                         break;
                     case ".csv":
-                        using (var csv = new CsvReader(reader, CultureInfo.CurrentCulture))
+                        using (var sr = new StreamReader(filePath))
                         {
-                            var persons = csv.GetRecords<Person>();
-
-                            foreach (var p in persons)
+                            using (var csv = new CsvReader(sr, CultureInfo.InvariantCulture))
                             {
-                                Console.WriteLine(p);
+                                csv.Context.RegisterClassMap<PersonClassMap>();
+                                var records = csv.GetRecords<Person>().ToList();
+
+                                foreach (var p in records)
+                                {
+                                    Console.WriteLine($"Name: {p.Name}, Age: {p.Age} and the hobbies:{String.Join(",", p.Hobbies)}");
+                                }
                             }
                         }
-
                         break;
                 }
             }

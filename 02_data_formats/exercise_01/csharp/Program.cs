@@ -11,9 +11,9 @@ namespace FileParser
 
             parser.ParseFile("../files/me.txt");
             parser.ParseFile("../files/me.json");
-            //parser.ParseFile("../files/me.yaml"); //TODO: fix
+            parser.ParseFile("../files/me.yaml");
             parser.ParseFile("../files/me.xml"); 
-            //parser.ParseFile("../files/me.csv"); //TODO: fix
+            parser.ParseFile("../files/me.csv"); //TODO: fix
         }
     }
 }
