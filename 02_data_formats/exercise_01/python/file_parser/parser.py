@@ -2,7 +2,7 @@ import json, yaml, csv, xml.etree.ElementTree as ET
 
 class Parser:
     def __init__(self):
-        self.supported_file_types = ["txt", "xml", "yaml", "yml", "json", "csv"]
+        self.supported_file_types = ["txt", "xml", "yaml", "json", "csv"]
     
     def parse_file(self, file_path):
         file_type = file_path.split(".")[-1]
