@@ -92,7 +92,7 @@ namespace FileParser
 
                                 foreach (var p in records)
                                 {
-                                    Console.WriteLine($"Name: {p.Name}, Age: {p.Age} and the hobbies:{String.Join(",", p.Hobbies)}");
+                                    Console.WriteLine($"Name: {p.Name}, Age: {p.Age} and the hobbies: {String.Join(";", p.Hobbies)}");
                                 }
                             }
                         }
