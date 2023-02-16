@@ -1,0 +1,5 @@
+{
+    "python.analysis.extraPaths": [
+        "./02_data_formats/exercise_01/python"
+    ]
+}
